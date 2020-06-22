@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rachelbarrios.test.controllers.VentanaAsignacionAlumnoController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="ASIGNACION ALUMNOS">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Line endX="613.0" layoutX="101.0" layoutY="42.0" startX="-100.0" strokeWidth="3.0" />
+      <TableView fx:id="tblAsignacionAlumnos" layoutY="51.0" prefHeight="275.0" prefWidth="714.0">
+        <columns>
+          <TableColumn fx:id="colClase" prefWidth="176.0" text="CLASE" />
+          <TableColumn fx:id="colAlumno" prefWidth="217.0" text="ALUMNO" />
+            <TableColumn fx:id="colFechaAsignacion" prefWidth="144.0" text="FECHA DE ASIGNACION" />
+            <TableColumn fx:id="colObservaciones" prefWidth="172.0" text="OBSERVACIONES" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="SALIR" />
+   </children>
+</AnchorPane>

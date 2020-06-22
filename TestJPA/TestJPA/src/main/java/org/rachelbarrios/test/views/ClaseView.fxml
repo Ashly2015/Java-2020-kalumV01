@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rachelbarrios.test.controllers.VentanaClaseController">
+   <children>
+      <Label layoutX="8.0" layoutY="1.0" text="CLASES">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TableView fx:id="tblClases" layoutY="50.0" prefHeight="278.0" prefWidth="772.0">
+        <columns>
+          <TableColumn fx:id="colDescripcion" prefWidth="164.0" text="DESCRIPCION" />
+          <TableColumn fx:id="colCarrera" prefWidth="112.0" text="CARRERA" />
+            <TableColumn fx:id="colHorario" prefWidth="77.0" text="HORARIO" />
+            <TableColumn fx:id="colInstructor" prefWidth="134.0" text="INSTRUCTOR" />
+            <TableColumn fx:id="colSalon" prefWidth="50.0" text="SALON" />
+            <TableColumn fx:id="colCiclo" prefWidth="47.0" text="CICLO" />
+            <TableColumn fx:id="colCupoMaximo" prefWidth="94.0" text="CUPO MAXIMO" />
+            <TableColumn fx:id="colCantidadAsignaciones" prefWidth="93.0" text="ASIGNACIONES" />
+        </columns>
+      </TableView>
+      <Line endX="679.0" layoutX="100.0" layoutY="37.0" startX="-100.0" strokeWidth="4.0" />
+      <Button layoutX="693.0" layoutY="334.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="79.0" text="SALIR" />
+      <Button layoutX="16.0" layoutY="335.0" mnemonicParsing="false" onAction="#mostrarVentanaClaseAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
+      <Button layoutX="137.0" layoutY="335.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
+   </children>
+</AnchorPane>
