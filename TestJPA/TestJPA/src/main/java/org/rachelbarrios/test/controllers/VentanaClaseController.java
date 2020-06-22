@@ -16,6 +16,9 @@ import javafx.scene.control.TableColumn;
 import org.rachelbarrios.test.App;
 import org.rachelbarrios.test.db.Conexion;
 import org.rachelbarrios.test.models.Clase;
+
+
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 
 public class VentanaClaseController implements Initializable {
@@ -50,8 +53,11 @@ public class VentanaClaseController implements Initializable {
         this.tblClases.setItems(this.listaClases);
         this.colDescripcion.setCellValueFactory(cellDescripcion->cellDescripcion.getValue().descripcion());
         this.colCarrera.setCellValueFactory(cellCarrera->cellCarrera.getValue().getCarreraTecnica().nombreCarrera());
-        this.colHorario.setCellValueFactory(cellHorario->cellHorario.getValue().getHorario().horarioInicio());
-        this.colInstructor.setCellValueFactory(cellInstructor->cellInstructor.getValue().getInstructor().nombres());
+
+        //this.colHorario.setCellValueFactory(cellHorario -> new ReadOnlyStringWrapper(formatoHora.format(cellHorario.getValue().getHorario().getHorarioInicio())  + "-" + formatoHora.format(cellHorario.getValue().getHorario().getHorarioFinal())));
+        
+      
+        this.colInstructor.setCellValueFactory(cellInstructor-> new ReadOnlyStringWrapper(cellInstructor.getValue().getInstructor().getApellidos()+ " "+ cellInstructor.getValue().getInstructor().getNombres()) );
         this.colSalon.setCellValueFactory(cellSalon->cellSalon.getValue().getSalon().nombreSalon());
         this.colCiclo.setCellValueFactory(cellCiclo->cellCiclo.getValue().ciclo());
         this.colCupoMaximo.setCellValueFactory(cellCupoMaximo->cellCupoMaximo.getValue().cupoMaximo());

@@ -12,6 +12,8 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.MysqlDataSource"/>
             <property name="eclipselink.logging.level.sql" value="FINE"/>
             <property name="eclipselink.loggin.parameters" value="true"/>
+            <property name="eclipselink.ddl.table-creation-suffix" value="engine=InnoDB"/>
+            <property name="eclipselink.ddl-generation" value="none"/>
        </properties>
     </persistence-unit>
 </persistence>
