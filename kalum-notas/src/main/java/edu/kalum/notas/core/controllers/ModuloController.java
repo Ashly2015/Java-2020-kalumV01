@@ -24,8 +24,7 @@ import java.util.stream.Collectors;
 public class ModuloController {
     @Autowired
     private IModuloService moduloService;
-    @Autowired
-    private ICarreraTecnicaService carreraTecnicaService;
+
 
     @GetMapping("/modulos")
     public ResponseEntity<?> listarModulos(){
@@ -76,8 +75,9 @@ public class ModuloController {
 
     @PostMapping("/modulos")
     public ResponseEntity<?> create(@Valid @RequestBody Modulo elemnto, BindingResult result) {
-        Modulo modulo = null;
+
         Map<String, Object> response = new HashMap<>();
+        Modulo modulo = null;
         if (result.hasErrors()) {
             List<String> errores = result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
             response.put("Errores", errores);
@@ -101,5 +101,67 @@ public class ModuloController {
         response.put("modulo",modulo);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 
+    }
+
+    @PutMapping("/modulos/{id}")
+    public ResponseEntity<?> update (@Valid @RequestBody Modulo value, BindingResult result, @PathVariable String id){
+        Map<String,Object> response=new HashMap<>();
+        Modulo update=this.moduloService.findById(id);
+        if(update==null){
+            response.put("mensaje", "No existe el registro con el id".concat(id));
+            response.put("Error","No existe el registro con el id".concat(id));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+        if(result.hasErrors()){
+            List<String> errores=result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
+            response.put("errores",errores);
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+        }
+        try {
+            update.setNombreModulo(value.getNombreModulo());
+            this.moduloService.save(update);
+            update.setNumeroSeminarios(value.getNumeroSeminarios());
+            this.moduloService.save(update);
+            update.setCarreraTecnica(value.getCarreraTecnica());
+            this.moduloService.save(update);
+            response.put("mensaje","El modulo ha sido actualizado correctamente");
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NO_CONTENT);
+
+        }catch (DataAccessException e){
+            response.put("mensaje","Error al actualizar la informcaion");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+
+
+        }catch (CannotCreateTransactionException e){
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+    }
+
+    @DeleteMapping("/modulos/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id){
+        Map<String,Object> response=new HashMap<String,Object>();
+        try{
+            Modulo registro =this.moduloService.findById(id);
+            if(registro==null){
+                response.put("mensaje", "No existe el registro con el id".concat(id));
+                response.put("Error","No existe el registro con el id".concat(id));
+                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+            }
+            this.moduloService.delete(id);
+        }catch (CannotCreateTransactionException e){
+            response.put("mensaje","Error al eliminar el modulo en la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }catch (DataAccessException e){
+            response.put("mensaje","Error al eliminar el modulo de la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMessage()));
+
+        }
+
+        response.put("mensaje","El modulo ha sido eliminado correctamente");
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
     }
 }

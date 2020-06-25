@@ -53,7 +53,7 @@ public class Horario implements Serializable {
 
     @Temporal(value = TemporalType.TIME)
     @Column(name = "horario_inicio")
-    public Date getHorarioInicio() {
+    public Date  getHorarioInicio() {
         return this.horarioInicio.get();
     }
 

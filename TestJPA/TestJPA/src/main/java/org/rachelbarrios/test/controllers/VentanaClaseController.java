@@ -54,7 +54,7 @@ public class VentanaClaseController implements Initializable {
         this.colDescripcion.setCellValueFactory(cellDescripcion->cellDescripcion.getValue().descripcion());
         this.colCarrera.setCellValueFactory(cellCarrera->cellCarrera.getValue().getCarreraTecnica().nombreCarrera());
 
-        //this.colHorario.setCellValueFactory(cellHorario -> new ReadOnlyStringWrapper(formatoHora.format(cellHorario.getValue().getHorario().getHorarioInicio())  + "-" + formatoHora.format(cellHorario.getValue().getHorario().getHorarioFinal())));
+        this.colHorario.setCellValueFactory(cellHorario -> new ReadOnlyStringWrapper(formatoHora.format(cellHorario.getValue().getHorario().getHorarioInicio())  + "-" + formatoHora.format(cellHorario.getValue().getHorario().getHorarioFinal())));
         
       
         this.colInstructor.setCellValueFactory(cellInstructor-> new ReadOnlyStringWrapper(cellInstructor.getValue().getInstructor().getApellidos()+ " "+ cellInstructor.getValue().getInstructor().getNombres()) );

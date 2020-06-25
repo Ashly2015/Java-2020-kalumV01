@@ -1,7 +1,9 @@
 package edu.kalum.notas.core.controllers;
 
 import edu.kalum.notas.core.models.entity.CarreraTecnica;
+import edu.kalum.notas.core.models.entity.Modulo;
 import edu.kalum.notas.core.models.service.ICarreraTecnicaService;
+import edu.kalum.notas.core.models.service.IModuloService;
 import javassist.tools.reflect.CannotCreateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -24,6 +26,8 @@ public class CarreraTecnicaController {
 
     @Autowired
     private ICarreraTecnicaService carreraTecnicaService;
+    @Autowired
+    private IModuloService moduloService;
 
     @GetMapping("/carrerasTecnicas")
     public  ResponseEntity<?> listarCarrerasTecnicas(){
@@ -54,6 +58,7 @@ public class CarreraTecnicaController {
         Map<String,Object> response=new HashMap<>();
         try {
             CarreraTecnica carrera= this.carreraTecnicaService.findById(id);
+
             if (carrera==null) {
                 response.put("mensaje","No exsisten registros con el id: ".concat(id));
                 return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
@@ -153,7 +158,37 @@ public class CarreraTecnicaController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
 
 
+        }catch (CannotCreateTransactionException e){
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
         }
+    }
+    @GetMapping("/carrerasTecnicas/{id}/modulos")
+    public ResponseEntity<?> showModulos(@PathVariable String id){
+        Map<String,Object> response=new HashMap<>();
+
+        try {
+            List<Modulo> modulos=this.moduloService.buscarModulos(id);
+            if(modulos==null || modulos.size()==0){
+                response.put("mensaje", "No existen modulos para esta carrera tecnica con el id".concat(id));
+
+                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NO_CONTENT);
+            }else{
+                return new ResponseEntity<List<Modulo>>(modulos,HttpStatus.OK);
+            }
+        }catch (CannotCreateTransactionException e){
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+        catch(DataAccessException e){
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+
+
     }
 
 }

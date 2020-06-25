@@ -1,5 +1,6 @@
 package edu.kalum.notas.core.models.service;
 
+import edu.kalum.notas.core.models.entity.CarreraTecnica;
 import edu.kalum.notas.core.models.entity.Modulo;
 import org.springframework.stereotype.Service;
 
@@ -12,4 +13,6 @@ public interface IModuloService {
     public Modulo save(Modulo modulo);
     public void delete(Modulo modulo);
     public void delete(String id);
+    public List<Modulo> findByCarreraTecnica(CarreraTecnica carreraTecnica);
+    public List<Modulo> buscarModulos(String carreraId);
 }
