@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "modulo")
@@ -17,7 +18,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Modulo implements Serializable {
-
     @Id
     @Column(name = "modulo_id")
     private String moduloId;
@@ -30,6 +30,11 @@ public class Modulo implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "carrera_id")
     private CarreraTecnica carreraTecnica;
+
+    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    @OneToMany(mappedBy = "modulo", fetch = FetchType.LAZY)
+    private List<Seminario> seminarios;
 
 
 }
