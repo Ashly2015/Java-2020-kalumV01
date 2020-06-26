@@ -168,5 +168,36 @@ public class SeminarioController {
         }
     }
 
+    @DeleteMapping("/seminarios/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id){
+        logger.info("Iniciando proceso de eliminacion de seminarios por id");
+        Map<String,Object> response=new HashMap<String,Object>();
+        try{
+            logger.debug("Iniciando consulta a la base de datos");
+            Seminario registro =this.seminarioService.findById(id);
+            if(registro==null){
+                logger.warn("No existen registros en la base de datos");
+                response.put("mensaje", "No existe el registro con el id".concat(id));
+                response.put("Error","No existe el registro con el id".concat(id));
+                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+            }
+            logger.info("Finalizando proceso de consulta de seminarios");
+            this.seminarioService.delete(id);
+        }catch (CannotCreateTransactionException e){
+            logger.error("Error al momento de conectarse a la base de datos");
+            response.put("mensaje","Error al eliminar el seminario en la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }catch (DataAccessException e){
+            logger.error("Error al consultar la informacion a la base de datos");
+            response.put("mensaje","Error al eliminar el modulo de la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMessage()));
+
+        }
+
+        response.put("mensaje","El seminario ha sido eliminado correctamente");
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
+    }
+
 
 }
