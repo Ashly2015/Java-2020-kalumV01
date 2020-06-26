@@ -24,7 +24,7 @@ public class Seminario implements Serializable{
 
     @Column(name="fecha_inicio")
     private Date fechaInicio;
-   
+
     @Column(name = "fecha_fin")
     private Date fechaFin;
 

@@ -123,5 +123,50 @@ public class SeminarioController {
 
     }
 
+    @PutMapping("/seminarios/{id}")
+    public ResponseEntity<?> update (@Valid @RequestBody Seminario value, BindingResult result, @PathVariable String id){
+        logger.info("Iniciando proceso de modificacion de seminarios");
+        Map<String,Object> response=new HashMap<>();
+        logger.debug("Iniciando consulta a la base de datos");
+        Seminario update=this.seminarioService.findById(id);
+        if(update==null){
+            logger.warn("No existen registros en la base de datos");
+            response.put("mensaje", "No existe el registro con el id".concat(id));
+            response.put("Error","No existe el registro con el id".concat(id));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+
+        if(result.hasErrors()){
+            List<String> errores=result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
+            response.put("errores",errores);
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+        }
+        try {
+            update.setNombreSeminario(value.getNombreSeminario());
+            this.seminarioService.save(update);
+            update.setFechaInicio(value.getFechaInicio());
+            this.seminarioService.save(update);
+            update.setFechaFin(value.getFechaFin());
+            this.seminarioService.save(update);
+            update.setModulo(value.getModulo());
+            this.seminarioService.save(update);
+            response.put("mensaje","El seminario ha sido actualizado correctamente");
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NO_CONTENT);
+
+        }catch (DataAccessException e){
+            logger.error("Error al consultar la informacion a la base de datos");
+            response.put("mensaje","Error al actualizar la informcaion");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+
+
+        }catch (CannotCreateTransactionException e){
+            logger.error("Error al momento de conectarse a la base de datos");
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+    }
+
 
 }
