@@ -94,12 +94,14 @@ public class ModuloController {
         Map<String, Object> response = new HashMap<>();
         Modulo modulo = null;
         if (result.hasErrors()) {
+            logger.error("Errores");
             List<String> errores = result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
             response.put("Errores", errores);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
         }
 
         try {
+            logger.info("Iniciando insercion de datos");
             elemnto.setModuloId(UUID.randomUUID().toString());
             modulo= this.moduloService.save(elemnto);
         }catch (CannotCreateTransactionException e){
@@ -116,6 +118,7 @@ public class ModuloController {
         }
         response.put("mensaje","El modulo ha sido creado con exito");
         response.put("modulo",modulo);
+        logger.info("Finalizando proceso de consulta de modulos");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 
     }

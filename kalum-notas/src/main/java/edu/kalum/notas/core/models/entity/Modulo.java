@@ -17,6 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Modulo implements Serializable {
+
     @Id
     @Column(name = "modulo_id")
     private String moduloId;

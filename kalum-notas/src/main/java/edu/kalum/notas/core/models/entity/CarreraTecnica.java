@@ -2,9 +2,13 @@ package edu.kalum.notas.core.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import edu.kalum.notas.core.controllers.CarreraTecnicaController;
+import edu.kalum.notas.core.models.service.ModuloServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

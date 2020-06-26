@@ -98,11 +98,13 @@ public class CarreraTecnicaController {
         CarreraTecnica carreraTecnica = null;
         Map<String, Object> response = new HashMap<>();
         if (result.hasErrors()) {
+            logger.error("Errores");
             List<String> errores = result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
             response.put("Errores", errores);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
         }
         try {
+            logger.info("Iniciando insercion de datos");
             elemnto.setCarreraId(UUID.randomUUID().toString());
             carreraTecnica= this.carreraTecnicaService.save(elemnto);
         } catch (CannotCreateTransactionException e){
@@ -120,6 +122,7 @@ public class CarreraTecnicaController {
 
         response.put("mensaje","La carrera tecnica ha sido creada con exito");
         response.put("carreraTecnica",carreraTecnica);
+        logger.info("Finalizando proceso de consulta de carreras tecnicas");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
 
@@ -136,7 +139,7 @@ public class CarreraTecnicaController {
                 response.put("Error","No existe el registro con el id".concat(id));
                 return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
             }
-            logger.info("Finalizando proceso de consulta de carreras tecnicas");
+
             this.carreraTecnicaService.delete(id);
         }catch (CannotCreateTransactionException e){
             logger.error("Error al momento de conectarse a la base de datos");
@@ -151,7 +154,7 @@ public class CarreraTecnicaController {
         }
 
         response.put("mensaje","La carrera tecnica ha sido eliminada correctamente");
-
+        logger.info("Finalizando proceso de consulta de carreras tecnicas");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
     }
 
