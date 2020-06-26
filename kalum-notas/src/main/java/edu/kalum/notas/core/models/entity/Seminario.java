@@ -21,10 +21,10 @@ public class Seminario implements Serializable{
     @NotEmpty(message = "Debe ingresar el nombre")
     @Column(name = "nombre_seminario")
     private String nombreSeminario;
-    @NotEmpty(message = "Debe ingresar la fecha de inicio")
+
     @Column(name="fecha_inicio")
     private Date fechaInicio;
-    @NotEmpty(message = "Debe ingresar la fecha de fin")
+   
     @Column(name = "fecha_fin")
     private Date fechaFin;
 
