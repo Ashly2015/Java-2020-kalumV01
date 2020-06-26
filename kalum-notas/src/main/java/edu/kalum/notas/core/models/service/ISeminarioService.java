@@ -1,19 +1,17 @@
-package edu.kalum.notas.core.models.dao;
+package edu.kalum.notas.core.models.service;
 
 import edu.kalum.notas.core.models.entity.CarreraTecnica;
 import edu.kalum.notas.core.models.entity.Modulo;
 import edu.kalum.notas.core.models.entity.Seminario;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-
-public interface ISeminarioDao extends JpaRepository<Seminario,String> {
-
+public interface ISeminarioService {
+    public List<Seminario> findAll();
+    public Seminario findById(String id);
+    public Seminario save(Seminario seminario);
+    public void delete(Seminario seminario);
+    public void delete(String id);
     public List<Seminario> findByModulo(Modulo modulo);
-
-    @Query("select s from  Seminario s where s.modulo.moduloId=?1")
     public List<Seminario> buscarSeminarios(String moduloId);
-
 }
