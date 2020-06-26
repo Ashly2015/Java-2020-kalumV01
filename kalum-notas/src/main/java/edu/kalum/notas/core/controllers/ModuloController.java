@@ -2,8 +2,10 @@ package edu.kalum.notas.core.controllers;
 
 import edu.kalum.notas.core.models.entity.CarreraTecnica;
 import edu.kalum.notas.core.models.entity.Modulo;
+import edu.kalum.notas.core.models.entity.Seminario;
 import edu.kalum.notas.core.models.service.ICarreraTecnicaService;
 import edu.kalum.notas.core.models.service.IModuloService;
+import edu.kalum.notas.core.models.service.ISeminarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,8 @@ public class ModuloController {
     private Logger logger= LoggerFactory.getLogger(ModuloController.class);
     @Autowired
     private IModuloService moduloService;
-
+    @Autowired
+    private ISeminarioService seminarioService;
 
     @GetMapping("/modulos")
     public ResponseEntity<?> listarModulos(){
@@ -195,5 +198,38 @@ public class ModuloController {
 
         response.put("mensaje","El modulo ha sido eliminado correctamente");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
+    }
+
+    @GetMapping("/modulos/{id}/seminarios")
+    public ResponseEntity<?> showModulos(@PathVariable String id){
+        logger.info("Iniciando proceso de consultas de seminarios segun modulos");
+        Map<String,Object> response=new HashMap<>();
+
+        try {
+            logger.debug("Iniciando consulta a la base de datos");
+            List<Seminario> seminarios=this.seminarioService.buscarSeminarios(id);
+            if(seminarios==null || seminarios.size()==0){
+                logger.warn("No existen registros en la base de datos");
+                response.put("mensaje", "No existen seminarios para este modulo con el id".concat(id));
+
+                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NO_CONTENT);
+            }else{
+                logger.info("Finalizando proceso de consulta de modulos");
+                return new ResponseEntity<List<Seminario>>(seminarios,HttpStatus.OK);
+            }
+        }catch (CannotCreateTransactionException e){
+            logger.error("Error al momento de conectarse a la base de datos");
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+        catch(DataAccessException e){
+            logger.error("Error al consultar la informacion a la base de datos");
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+
+
     }
 }
