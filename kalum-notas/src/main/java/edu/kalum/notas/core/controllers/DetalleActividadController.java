@@ -3,7 +3,6 @@ package edu.kalum.notas.core.controllers;
 import edu.kalum.notas.core.models.entity.DetalleActividad;
 import edu.kalum.notas.core.models.entity.Seminario;
 import edu.kalum.notas.core.models.service.IDetalleActividadService;
-import edu.kalum.notas.core.models.service.ISeminarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,4 +54,36 @@ public class DetalleActividadController {
             return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
         }
     }
+
+    @GetMapping("detalle-actividades/{id}")
+    public ResponseEntity<?> show (@PathVariable String id){
+        logger.info("Iniciando proceso de consultas de detalle actividad por id");
+        Map<String,Object> response=new HashMap<>();
+        try {
+            logger.debug("Iniciando consulta a la base de datos");
+            DetalleActividad detalleActividad= this.detalleActividadService.findById(id);
+            if(detalleActividad==null){
+                logger.warn("No existen registros en la base de datos");
+                response.put("mensaje","No exsisten registros con el id: ".concat(id));
+                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+            }else{
+                logger.info("Finalizando proceso de consulta de detalle actividad");
+                return new ResponseEntity<DetalleActividad>(detalleActividad,HttpStatus.OK);
+            }
+
+        }catch (CannotCreateTransactionException e){
+            logger.error("Error al momento de conectarse a la base de datos");
+            response.put("mensaje","Error al realizar la conexion a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+        catch(DataAccessException e){
+            logger.error("Error al consultar la informacion a la base de datos");
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+
+    }
+
 }
