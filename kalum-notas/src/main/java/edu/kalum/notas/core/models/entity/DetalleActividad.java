@@ -43,7 +43,7 @@ public class DetalleActividad implements Serializable {
 
     @JsonIgnore
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    @OneToMany(mappedBy = "detalle_actividad", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "detalleActividad", fetch = FetchType.LAZY)
     private List<DetalleNota> detalleNotas;
 
 

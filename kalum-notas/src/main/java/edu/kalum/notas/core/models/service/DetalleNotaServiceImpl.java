@@ -50,7 +50,7 @@ public class DetalleNotaServiceImpl implements IDetalleNotaService{
     @Override
     public List<DetalleNota> findByDetalleActividad(DetalleActividad detalleActividad) {
         logger.info("Iniciando metodo de consultas de detalle actividad correspondiente al detalle nota");
-        return detalleNotaDao.findBySeminario(detalleActividad);
+        return detalleNotaDao.findByDetalleActividad(detalleActividad);
     }
 
     @Override

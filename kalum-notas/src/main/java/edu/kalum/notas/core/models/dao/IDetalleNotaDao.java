@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IDetalleNotaDao extends JpaRepository<DetalleNota,String> {
-    public List<DetalleNota> findBySeminario(DetalleActividad detalleActividad);
+    public List<DetalleNota> findByDetalleActividad(DetalleActividad detalleActividad);
 
     @Query("select d from  DetalleNota d where d.detalleActividad.detalleActividadId=?1")
     public List<DetalleNota> buscarDetalleNotas(String detalleActividadId);

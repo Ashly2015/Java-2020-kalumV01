@@ -2,7 +2,6 @@ package edu.kalum.notas.core.controllers;
 
 import edu.kalum.notas.core.models.entity.DetalleActividad;
 import edu.kalum.notas.core.models.entity.DetalleNota;
-import edu.kalum.notas.core.models.entity.Seminario;
 import edu.kalum.notas.core.models.service.IDetalleActividadService;
 import edu.kalum.notas.core.models.service.IDetalleNotaService;
 import org.slf4j.Logger;
@@ -24,27 +23,25 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/kalum-notas/v1")
-public class DetalleActividadController {
-    private Logger logger= LoggerFactory.getLogger(DetalleActividadController.class);
-    @Autowired
-    private IDetalleActividadService detalleActividadService;
+public class DetalleNotaController {
+    private Logger logger= LoggerFactory.getLogger(DetalleNotaController.class);
     @Autowired
     private IDetalleNotaService detalleNotaService;
 
-    @GetMapping("/detalle-actividades")
-    public ResponseEntity<?> listarDetalleActividades(){
-        logger.info("Iniciando proceso de consultas de detalle actividades");
+    @GetMapping("/detalle-notas")
+    public ResponseEntity<?> listarDetalleANotas(){
+        logger.info("Iniciando proceso de consultas de detalle notas");
         Map<String,Object> response = new HashMap<>();
         try {
             logger.debug("Iniciando consulta a la base de datos");
-            List<DetalleActividad> detalleActividades=this.detalleActividadService.findAll();
-            if (detalleActividades.size() == 0) {
+            List<DetalleNota> detalleNotas=this.detalleNotaService.findAll();
+            if (detalleNotas.size() == 0) {
                 logger.warn("No existen registros en la base de datos");
                 response.put("mensaje", "No exsisten registros");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NO_CONTENT);
             } else {
-                logger.info("Finalizando proceso de consulta de detalle actividades");
-                return new ResponseEntity<List<DetalleActividad>>(detalleActividades,HttpStatus.OK);
+                logger.info("Finalizando proceso de consulta de detalle notas");
+                return new ResponseEntity<List<DetalleNota>>(detalleNotas,HttpStatus.OK);
             }
         }catch (CannotCreateTransactionException e){
             logger.error("Error al momento de conectarse a la base de datos");
@@ -60,20 +57,20 @@ public class DetalleActividadController {
         }
     }
 
-    @GetMapping("detalle-actividades/{id}")
+    @GetMapping("detalle-notas/{id}")
     public ResponseEntity<?> show (@PathVariable String id){
-        logger.info("Iniciando proceso de consultas de detalle actividad por id");
+        logger.info("Iniciando proceso de consultas de detalle nota por id");
         Map<String,Object> response=new HashMap<>();
         try {
             logger.debug("Iniciando consulta a la base de datos");
-            DetalleActividad detalleActividad= this.detalleActividadService.findById(id);
-            if(detalleActividad==null){
+            DetalleNota detalleNota= this.detalleNotaService.findById(id);
+            if(detalleNota==null){
                 logger.warn("No existen registros en la base de datos");
                 response.put("mensaje","No exsisten registros con el id: ".concat(id));
                 return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
             }else{
-                logger.info("Finalizando proceso de consulta de detalle actividad");
-                return new ResponseEntity<DetalleActividad>(detalleActividad,HttpStatus.OK);
+                logger.info("Finalizando proceso de consulta de detalle nota");
+                return new ResponseEntity<DetalleNota>(detalleNota,HttpStatus.OK);
             }
 
         }catch (CannotCreateTransactionException e){
@@ -91,11 +88,11 @@ public class DetalleActividadController {
 
     }
 
-    @PostMapping("/detalle-actividades")
-    public ResponseEntity<?> create(@Valid @RequestBody DetalleActividad elemnto, BindingResult result) {
-        logger.info("Iniciando proceso de creacion de detalle actividades");
+    @PostMapping("/detalle-notas")
+    public ResponseEntity<?> create(@Valid @RequestBody DetalleNota elemnto, BindingResult result) {
+        logger.info("Iniciando proceso de creacion de detalle nota");
         Map<String, Object> response = new HashMap<>();
-        DetalleActividad detalleActividad = null;
+        DetalleNota detalleNota = null;
         if (result.hasErrors()) {
             logger.error("Errores");
             List<String> errores = result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
@@ -105,8 +102,8 @@ public class DetalleActividadController {
 
         try {
             logger.info("Iniciando insercion de datos");
-            elemnto.setDetalleActividadId(UUID.randomUUID().toString());
-            detalleActividad= this.detalleActividadService.save(elemnto);
+            elemnto.setDetalleNotaId(UUID.randomUUID().toString());
+            detalleNota= this.detalleNotaService.save(elemnto);
         }catch (CannotCreateTransactionException e){
             logger.error("Error al momento de conectarse a la base de datos");
             response.put("mensaje","Error al realizar la conexion a la base de datos");
@@ -119,19 +116,19 @@ public class DetalleActividadController {
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
         }
-        response.put("mensaje","El detalle de actividad ha sido creado con exito");
-        response.put("detalle actividad",detalleActividad);
-        logger.info("Finalizando proceso de consulta de detalle actividad");
+        response.put("mensaje","El detalle de nota ha sido creado con exito");
+        response.put("detalle nota",detalleNota);
+        logger.info("Finalizando proceso de consulta de detalle nota");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 
     }
 
-    @PutMapping("/detalle-actividades/{id}")
-    public ResponseEntity<?> update (@Valid @RequestBody DetalleActividad value, BindingResult result, @PathVariable String id){
-        logger.info("Iniciando proceso de modificacion de detalle actividad");
+    @PutMapping("/detalle-notas/{id}")
+    public ResponseEntity<?> update (@Valid @RequestBody DetalleNota value, BindingResult result, @PathVariable String id){
+        logger.info("Iniciando proceso de modificacion de detalle nota");
         Map<String,Object> response=new HashMap<>();
         logger.debug("Iniciando consulta a la base de datos");
-        DetalleActividad update=this.detalleActividadService.findById(id);
+        DetalleNota update=this.detalleNotaService.findById(id);
         if(update==null){
             logger.warn("No existen registros en la base de datos");
             response.put("mensaje", "No existe el registro con el id".concat(id));
@@ -145,21 +142,13 @@ public class DetalleActividadController {
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
         }
         try {
-            update.setNombreActividad(value.getNombreActividad());
-            this.detalleActividadService.save(update);
-            update.setNotaActividad(value.getNotaActividad());
-            this.detalleActividadService.save(update);
-            update.setFechaCreacion(value.getFechaCreacion());
-            this.detalleActividadService.save(update);
-            update.setFechaEntrega(value.getFechaEntrega());
-            this.detalleActividadService.save(update);
-            update.setFechaPostergacion(value.getFechaPostergacion());
-            this.detalleActividadService.save(update);
-            update.setEstado(value.getEstado());
-            this.detalleActividadService.save(update);
-            update.setSeminario(value.getSeminario());
-            this.detalleActividadService.save(update);
-            response.put("mensaje","El detalle de actividad ha sido actualizado correctamente");
+            update.setValorNota(value.getValorNota());
+            this.detalleNotaService.save(update);
+            update.setDetalleActividad(value.getDetalleActividad());
+            this.detalleNotaService.save(update);
+            update.setAlumno(value.getAlumno());
+            this.detalleNotaService.save(update);
+            response.put("mensaje","El detalle de nota ha sido actualizado correctamente");
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NO_CONTENT);
 
         }catch (DataAccessException e){
@@ -177,24 +166,24 @@ public class DetalleActividadController {
         }
     }
 
-    @DeleteMapping("/detalle-actividades/{id}")
+    @DeleteMapping("/detalle-notas/{id}")
     public ResponseEntity<?> delete(@PathVariable String id){
-        logger.info("Iniciando proceso de eliminacion de detalle actividad por id");
+        logger.info("Iniciando proceso de eliminacion de detalle nota por id");
         Map<String,Object> response=new HashMap<String,Object>();
         try{
             logger.debug("Iniciando consulta a la base de datos");
-            DetalleActividad registro =this.detalleActividadService.findById(id);
+            DetalleNota registro =this.detalleNotaService.findById(id);
             if(registro==null){
                 logger.warn("No existen registros en la base de datos");
                 response.put("mensaje", "No existe el registro con el id".concat(id));
                 response.put("Error","No existe el registro con el id".concat(id));
                 return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
             }
-            logger.info("Finalizando proceso de consulta de detalle actividad");
-            this.detalleActividadService.delete(id);
+            logger.info("Finalizando proceso de consulta de detalle nota");
+            this.detalleNotaService.delete(id);
         }catch (CannotCreateTransactionException e){
             logger.error("Error al momento de conectarse a la base de datos");
-            response.put("mensaje","Error al eliminar el detalle actividad en la base de datos");
+            response.put("mensaje","Error al eliminar el detalle nota en la base de datos");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
         }catch (DataAccessException e){
@@ -204,41 +193,9 @@ public class DetalleActividadController {
 
         }
 
-        response.put("mensaje","El detalle actividad ha sido eliminado correctamente");
+        response.put("mensaje","El detalle nota ha sido eliminado correctamente");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
     }
 
-    @GetMapping("/detalle-actividades/{id}/detalle-notas")
-    public ResponseEntity<?> showDetalleNotas(@PathVariable String id){
-        logger.info("Iniciando proceso de consultas de detalle notas segun detalle actividades");
-        Map<String,Object> response=new HashMap<>();
-
-        try {
-            logger.debug("Iniciando consulta a la base de datos");
-            List<DetalleNota> detalleNotas=this.detalleNotaService.buscarDetalleNotas(id);
-            if(detalleNotas==null || detalleNotas.size()==0){
-                logger.warn("No existen registros en la base de datos");
-                response.put("mensaje", "No existen detalle actividades para este detalle nota con el id".concat(id));
-
-                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NO_CONTENT);
-            }else{
-                logger.info("Finalizando proceso de consulta de detalle notas");
-                return new ResponseEntity<List<DetalleNota>>(detalleNotas,HttpStatus.OK);
-            }
-        }catch (CannotCreateTransactionException e){
-            logger.error("Error al momento de conectarse a la base de datos");
-            response.put("mensaje","Error al realizar la consulta a la base de datos");
-            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
-        }
-        catch(DataAccessException e){
-            logger.error("Error al consultar la informacion a la base de datos");
-            response.put("mensaje","Error al realizar la consulta a la base de datos");
-            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
-        }
-
-
-    }
 
 }

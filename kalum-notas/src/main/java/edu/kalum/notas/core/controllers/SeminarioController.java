@@ -194,7 +194,7 @@ public class SeminarioController {
             return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
         }catch (DataAccessException e){
             logger.error("Error al consultar la informacion a la base de datos");
-            response.put("mensaje","Error al eliminar el modulo de la base de datos");
+            response.put("mensaje","Error al eliminar el seminario de la base de datos");
             response.put("error",e.getMessage().concat(": ").concat(e.getMessage()));
 
         }
