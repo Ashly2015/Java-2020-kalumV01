@@ -122,4 +122,86 @@ public class DetalleActividadController {
 
     }
 
+    @PutMapping("/detalle-actividades/{id}")
+    public ResponseEntity<?> update (@Valid @RequestBody DetalleActividad value, BindingResult result, @PathVariable String id){
+        logger.info("Iniciando proceso de modificacion de detalle actividad");
+        Map<String,Object> response=new HashMap<>();
+        logger.debug("Iniciando consulta a la base de datos");
+        DetalleActividad update=this.detalleActividadService.findById(id);
+        if(update==null){
+            logger.warn("No existen registros en la base de datos");
+            response.put("mensaje", "No existe el registro con el id".concat(id));
+            response.put("Error","No existe el registro con el id".concat(id));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+
+        if(result.hasErrors()){
+            List<String> errores=result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
+            response.put("errores",errores);
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+        }
+        try {
+            update.setNombreActividad(value.getNombreActividad());
+            this.detalleActividadService.save(update);
+            update.setNotaActividad(value.getNotaActividad());
+            this.detalleActividadService.save(update);
+            update.setFechaCreacion(value.getFechaCreacion());
+            this.detalleActividadService.save(update);
+            update.setFechaEntrega(value.getFechaEntrega());
+            this.detalleActividadService.save(update);
+            update.setFechaPostergacion(value.getFechaPostergacion());
+            this.detalleActividadService.save(update);
+            update.setEstado(value.getEstado());
+            this.detalleActividadService.save(update);
+            update.setSeminario(value.getSeminario());
+            this.detalleActividadService.save(update);
+            response.put("mensaje","El detalle de actividad ha sido actualizado correctamente");
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NO_CONTENT);
+
+        }catch (DataAccessException e){
+            logger.error("Error al consultar la informacion a la base de datos");
+            response.put("mensaje","Error al actualizar la informcaion");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+
+
+        }catch (CannotCreateTransactionException e){
+            logger.error("Error al momento de conectarse a la base de datos");
+            response.put("mensaje","Error al realizar la consulta a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+    }
+
+    @DeleteMapping("/detalle-actividades/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id){
+        logger.info("Iniciando proceso de eliminacion de detalle actividad por id");
+        Map<String,Object> response=new HashMap<String,Object>();
+        try{
+            logger.debug("Iniciando consulta a la base de datos");
+            DetalleActividad registro =this.detalleActividadService.findById(id);
+            if(registro==null){
+                logger.warn("No existen registros en la base de datos");
+                response.put("mensaje", "No existe el registro con el id".concat(id));
+                response.put("Error","No existe el registro con el id".concat(id));
+                return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+            }
+            logger.info("Finalizando proceso de consulta de detalle actividad");
+            this.detalleActividadService.delete(id);
+        }catch (CannotCreateTransactionException e){
+            logger.error("Error al momento de conectarse a la base de datos");
+            response.put("mensaje","Error al eliminar el seminario en la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }catch (DataAccessException e){
+            logger.error("Error al consultar la informacion a la base de datos");
+            response.put("mensaje","Error al eliminar el modulo de la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMessage()));
+
+        }
+
+        response.put("mensaje","El detalle actividad ha sido eliminado correctamente");
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
+    }
+
 }
