@@ -1,5 +1,7 @@
 package edu.kalum.notas.core.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="detalle_actividad")
@@ -37,5 +40,11 @@ public class DetalleActividad implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "seminario_id")
     private Seminario seminario;
+
+    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    @OneToMany(mappedBy = "detalle_actividad", fetch = FetchType.LAZY)
+    private List<DetalleNota> detalleNotas;
+
 
 }
