@@ -10,14 +10,15 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.CannotCreateTransactionException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/kalum-notas/v1")
@@ -83,6 +84,41 @@ public class DetalleActividadController {
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
         }
+
+    }
+
+    @PostMapping("/detalle-actividades")
+    public ResponseEntity<?> create(@Valid @RequestBody DetalleActividad elemnto, BindingResult result) {
+        logger.info("Iniciando proceso de creacion de detalle actividades");
+        Map<String, Object> response = new HashMap<>();
+        DetalleActividad detalleActividad = null;
+        if (result.hasErrors()) {
+            logger.error("Errores");
+            List<String> errores = result.getFieldErrors().stream().map(err -> err.getDefaultMessage()).collect(Collectors.toList());
+            response.put("Errores", errores);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            logger.info("Iniciando insercion de datos");
+            elemnto.setDetalleActividadId(UUID.randomUUID().toString());
+            detalleActividad= this.detalleActividadService.save(elemnto);
+        }catch (CannotCreateTransactionException e){
+            logger.error("Error al momento de conectarse a la base de datos");
+            response.put("mensaje","Error al realizar la conexion a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+        catch(DataAccessException e){
+            logger.error("Error al consultar la informacion a la base de datos");
+            response.put("mensaje","Error al realizar el insert a la base de datos");
+            response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
+        }
+        response.put("mensaje","El detalle de actividad ha sido creado con exito");
+        response.put("detalle actividad",detalleActividad);
+        logger.info("Finalizando proceso de consulta de detalle actividad");
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 
     }
 

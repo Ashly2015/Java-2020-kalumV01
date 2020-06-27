@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class DetalleActividad implements Serializable {
     @NotEmpty
     @Column(name = "nombre_actividad")
     private String nombreActividad;
-    @NotEmpty
+    @Min(0)
     @Column(name = "nota_actividad")
     private int notaActividad;
     @Column(name = "fecha_creacion")

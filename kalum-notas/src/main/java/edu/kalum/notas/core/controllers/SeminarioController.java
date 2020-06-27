@@ -121,7 +121,7 @@ public class SeminarioController {
             return new ResponseEntity<Map<String, Object>>(response,HttpStatus.SERVICE_UNAVAILABLE);
         }
         response.put("mensaje","El seminario ha sido creado con exito");
-        response.put("modulo",seminario);
+        response.put("seminario",seminario);
         logger.info("Finalizando proceso de consulta de seminarios");
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 
