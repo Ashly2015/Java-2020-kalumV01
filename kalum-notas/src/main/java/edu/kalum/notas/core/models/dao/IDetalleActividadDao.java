@@ -11,6 +11,6 @@ import java.util.List;
 public interface IDetalleActividadDao extends JpaRepository<DetalleActividad,String> {
     public List<DetalleActividad> findBySeminario(Seminario seminario);
 
-    @Query("select d from  DetalleActividad s where d.seminario.seminarioId=?1")
-    public List<DetalleActividad> buscarDetalleActividad(String seminarioId);
+    @Query("select d from  DetalleActividad d where d.seminario.seminarioId=?1")
+    public List<DetalleActividad> buscarDetalleActividades(String seminarioId);
 }

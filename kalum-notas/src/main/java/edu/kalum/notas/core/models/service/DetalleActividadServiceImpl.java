@@ -57,6 +57,6 @@ public class DetalleActividadServiceImpl implements IDetalleActividadService {
     @Override
     public List<DetalleActividad> buscarDetalleActividades(String seminarioId) {
         logger.info("Iniciando metodo de consultas de seminario correspondiente al detalle actividad por id");
-        return detalleActividadDao.buscarDetalleActividad(seminarioId);
+        return detalleActividadDao.buscarDetalleActividades(seminarioId);
     }
 }
