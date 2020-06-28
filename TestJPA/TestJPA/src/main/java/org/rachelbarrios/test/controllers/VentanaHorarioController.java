@@ -18,6 +18,7 @@ import org.rachelbarrios.test.db.Conexion;
 import org.rachelbarrios.test.models.Clase;
 import org.rachelbarrios.test.models.Horario;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 
 public class VentanaHorarioController implements Initializable {
@@ -25,19 +26,22 @@ public class VentanaHorarioController implements Initializable {
     @FXML
     private TableView<Horario> tblHorarios;
     @FXML
-    private TableColumn<Horario, Date> colHorarioInicio;
+    private TableColumn<Horario, String> colHorarioInicio;
     @FXML
-    private TableColumn<Horario, Date> colHorarioFinal;
+    private TableColumn<Horario, String> colHorarioFinal;
     private ObservableList<Horario> listaHorarios;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DateFormat formato = new SimpleDateFormat("HH:mm:ss");
-        this.listaHorarios = FXCollections
-                .observableArrayList((List<Horario>) Conexion.getInstancia().findAll("Horario.findAll"));
+        this.listaHorarios = FXCollections.observableArrayList((List<Horario>) Conexion.getInstancia().findAll("Horario.findAll"));
         this.tblHorarios.setItems(this.listaHorarios);
-        this.colHorarioInicio.setCellValueFactory(cellHorarioInicio -> cellHorarioInicio.getValue().horarioInicio());
-        this.colHorarioFinal.setCellValueFactory(cellHorarioFinal -> cellHorarioFinal.getValue().horarioFinal());
+       
+
+        this.colHorarioInicio.setCellValueFactory(cellHorarioInicio-> new ReadOnlyStringWrapper(formato.format(cellHorarioInicio.getValue().getHorarioInicio())));
+        this.colHorarioFinal.setCellValueFactory(cellHorarioFinal-> new ReadOnlyStringWrapper(formato.format(cellHorarioFinal.getValue().getHorarioFinal())));
+
+       
     }
 
     public void mostrarVentanaPrincipal() {

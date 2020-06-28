@@ -27,7 +27,7 @@
         </columns>
       </TableView>
       <Line endX="679.0" layoutX="100.0" layoutY="37.0" startX="-100.0" strokeWidth="4.0" />
-      <Button layoutX="693.0" layoutY="334.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="79.0" text="SALIR" />
+      <Button layoutX="693.0" layoutY="334.0" mnemonicParsing="false" onAction="#mostrarVentanaPrincipal" prefHeight="27.0" prefWidth="79.0" text="SALIR" />
       <Button layoutX="16.0" layoutY="335.0" mnemonicParsing="false" onAction="#mostrarVentanaClaseAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
       <Button layoutX="137.0" layoutY="335.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
    </children>

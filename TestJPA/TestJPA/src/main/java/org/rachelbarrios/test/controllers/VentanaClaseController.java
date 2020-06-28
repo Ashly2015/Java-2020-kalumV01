@@ -29,7 +29,7 @@ public class VentanaClaseController implements Initializable {
     @FXML
     private TableColumn<Clase,String> colCarrera;
     @FXML
-    private TableColumn<Clase,Date> colHorario;
+    private TableColumn<Clase,String> colHorario;
     @FXML
     private TableColumn<Clase,String> colInstructor;
     @FXML
@@ -53,10 +53,7 @@ public class VentanaClaseController implements Initializable {
         this.tblClases.setItems(this.listaClases);
         this.colDescripcion.setCellValueFactory(cellDescripcion->cellDescripcion.getValue().descripcion());
         this.colCarrera.setCellValueFactory(cellCarrera->cellCarrera.getValue().getCarreraTecnica().nombreCarrera());
-
-        this.colHorario.setCellValueFactory(cellHorario -> new ReadOnlyStringWrapper(formatoHora.format(cellHorario.getValue().getHorario().getHorarioInicio())  + "-" + formatoHora.format(cellHorario.getValue().getHorario().getHorarioFinal())));
-        
-      
+        this.colHorario.setCellValueFactory(cellHorario -> new ReadOnlyStringWrapper(formatoHora.format(cellHorario.getValue().getHorario().getHorarioInicio())+"-"+ formatoHora.format(cellHorario.getValue().getHorario().getHorarioFinal())));
         this.colInstructor.setCellValueFactory(cellInstructor-> new ReadOnlyStringWrapper(cellInstructor.getValue().getInstructor().getApellidos()+ " "+ cellInstructor.getValue().getInstructor().getNombres()) );
         this.colSalon.setCellValueFactory(cellSalon->cellSalon.getValue().getSalon().nombreSalon());
         this.colCiclo.setCellValueFactory(cellCiclo->cellCiclo.getValue().ciclo());
