@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "rol")
@@ -19,6 +20,7 @@ public class Role implements Serializable {
     private Long id;
     @Column(name = "nombre",unique = true)
     private String nombre;
-
+    @ManyToMany(mappedBy = "roles")
+    private List<Usuario> usuarios;
 
 }

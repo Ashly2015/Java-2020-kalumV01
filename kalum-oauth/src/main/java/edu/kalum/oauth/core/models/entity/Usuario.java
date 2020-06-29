@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -23,6 +24,10 @@ public class Usuario implements Serializable {
     private String password;
     @Column(name = "enabled")
     private boolean enabled;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "usuario_role",joinColumns = @JoinColumn(name = "usuario_id"),inverseJoinColumns = @JoinColumn(name ="role_id" ),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id","role_id"})})
+    private List<Role> roles;
 
 
 }
