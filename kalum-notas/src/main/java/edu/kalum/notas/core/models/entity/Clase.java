@@ -19,6 +19,9 @@ public class Clase implements Serializable {
     @Id
     @Column(name = "clase_id")
     private String claseId;
+    @Column(name = "descripcion")
+    private String descripcion;
+
 
 
 
