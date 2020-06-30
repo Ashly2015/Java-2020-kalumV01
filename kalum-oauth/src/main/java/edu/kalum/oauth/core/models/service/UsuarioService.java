@@ -35,4 +35,8 @@ public class UsuarioService implements UserDetailsService {
         return new User(usuario.getUsername(),usuario.getPassword(),usuario.isEnabled()
                 ,true,true,true,authorities);
     }
+
+    public Usuario save(Usuario usuario){
+        return usuarioDao.save(usuario);
+    }
 }
