@@ -79,12 +79,16 @@ public class VentanaClaseAddUpdateController implements Initializable {
         this.clase = clase;
         this.txtDescripcion.setText(clase.getDescripcion());
         
-        
+        this.cmbSalon.setValue(clase.getSalon());
+        this.cmbHorario.setValue(clase.getHorario());
+        this.cmbInstructor.setValue(clase.getInstructor());
+        this.cmbCarrera.setValue(clase.getCarreraTecnica());
         
         this.txtCantidadAsignaciones.setText(String.valueOf(clase.getCantidadAsignaciones()));
         this.txtCiclo.setText(String.valueOf(clase.getCiclo()));
         this.txtCupoMaximo.setText(String.valueOf(clase.getCupoMaximo()));
         this.txtCupoMinimo.setText(String.valueOf(clase.getCupoMinimo()));   
+        
     }
 
     public void cancelar() {
