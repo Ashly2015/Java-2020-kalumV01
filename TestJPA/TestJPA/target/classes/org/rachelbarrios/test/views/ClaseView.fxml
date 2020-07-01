@@ -30,5 +30,6 @@
       <Button layoutX="693.0" layoutY="334.0" mnemonicParsing="false" onAction="#mostrarVentanaPrincipal" prefHeight="27.0" prefWidth="79.0" text="SALIR" />
       <Button layoutX="16.0" layoutY="335.0" mnemonicParsing="false" onAction="#mostrarVentanaClaseAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
       <Button layoutX="137.0" layoutY="335.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
+      <Button layoutX="253.0" layoutY="335.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="104.0" text="ELIMINAR" />
    </children>
 </AnchorPane>

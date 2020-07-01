@@ -2,12 +2,14 @@ package org.rachelbarrios.test.controllers;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.control.TableView;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 
 import org.rachelbarrios.test.App;
@@ -66,6 +68,39 @@ public class VentanaSalonController implements Initializable {
         }else{
             Salon salon =this.tblSalones.getSelectionModel().getSelectedItem();
             this.directorEscenas.mostrarVentanaSalonAddUpdate(salon);
+        }
+    }
+
+    public void eliminar() {
+        if (this.tblSalones.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Salón");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar un elemento");
+            alert.initOwner(null);
+            alert.show();
+        } else {
+            Salon salon = this.tblSalones.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Salón");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Desea eliminar el registro?");
+            alert.initOwner(null);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                Conexion.getInstancia().eliminar(salon);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Salón");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Registro eliminado correctamente");
+                alert1.initOwner(null);
+                alert1.show();
+                this.directorEscenas.mostrarVentanaSalon();
+            } else {
+                this.directorEscenas.mostrarVentanaSalon();
+            }
         }
     }
 

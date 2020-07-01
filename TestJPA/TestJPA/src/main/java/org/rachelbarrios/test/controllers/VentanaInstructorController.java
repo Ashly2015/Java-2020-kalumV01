@@ -2,12 +2,14 @@ package org.rachelbarrios.test.controllers;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.control.TableView;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 
 import org.rachelbarrios.test.App;
@@ -78,6 +80,39 @@ this.colEstatus.setCellValueFactory(cellEstatus -> cellEstatus.getValue().estatu
         }else{
             Instructor instructor =this.tblInstructores.getSelectionModel().getSelectedItem();
             this.directorEscenas.mostrarVentanaInstructorAddUpdate(instructor);
+        }
+    }
+
+    public void eliminar() {
+        if (this.tblInstructores.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Instructor");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar un elemento");
+            alert.initOwner(null);
+            alert.show();
+        } else {
+            Instructor instructor = this.tblInstructores.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Instructor");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Desea eliminar el registro?");
+            alert.initOwner(null);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                Conexion.getInstancia().eliminar(instructor);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Instructor");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Registro eliminado correctamente");
+                alert1.initOwner(null);
+                alert1.show();
+                this.directorEscenas.mostrarVentanaInstructor();
+            } else {
+                this.directorEscenas.mostrarVentanaInstructor();
+            }
         }
     }
 }

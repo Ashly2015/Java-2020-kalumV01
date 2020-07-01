@@ -5,12 +5,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.control.TableView;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 
 import org.rachelbarrios.test.App;
@@ -91,6 +93,39 @@ public class VentanaClaseController implements Initializable {
         }else{
             Clase clase =this.tblClases.getSelectionModel().getSelectedItem();
             this.directorEscenas.mostrarVentanaClaseAddUpdate(clase);
+        }
+    }
+
+    public void eliminar() {
+        if (this.tblClases.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Clase");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar un elemento");
+            alert.initOwner(null);
+            alert.show();
+        } else {
+            Clase clase = this.tblClases.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Clase");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Desea eliminar el registro?");
+            alert.initOwner(null);
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                Conexion.getInstancia().eliminar(clase);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Clase");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Registro eliminado correctamente");
+                alert1.initOwner(null);
+                alert1.show();
+                this.directorEscenas.mostrarVentanaClase();
+            } else {
+                this.directorEscenas.mostrarVentanaClase();
+            }
         }
     }
 

@@ -22,7 +22,8 @@
           <TableColumn fx:id="colHorarioFinal" prefWidth="220.0" text="HORARIO FINAL" />
         </columns>
       </TableView>
-      <Button layoutX="15.0" layoutY="336.0" mnemonicParsing="false" onAction="#mostrarVentanaHorarioAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
-      <Button layoutX="138.0" layoutY="336.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
+      <Button layoutX="15.0" layoutY="336.0" mnemonicParsing="false" onAction="#mostrarVentanaHorarioAddUpdate" prefHeight="25.0" prefWidth="78.0" text="NUEVO" />
+      <Button layoutX="106.0" layoutY="336.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="90.0" text="MODIFICAR" />
+      <Button layoutX="208.0" layoutY="336.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="14.0" prefWidth="78.0" text="ELIMINAR" />
    </children>
 </AnchorPane>

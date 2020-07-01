@@ -21,7 +21,8 @@
          </columns>
       </TableView>
       <Button layoutX="344.0" layoutY="336.0" mnemonicParsing="false" onAction="#mostrarVentanaPrincipal" prefHeight="25.0" prefWidth="106.0" text="SALIR" />
-      <Button layoutX="10.0" layoutY="336.0" mnemonicParsing="false" onAction="#mostrarVentanaCarreraTecnicaAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
-      <Button layoutX="133.0" layoutY="336.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
+      <Button layoutX="10.0" layoutY="336.0" mnemonicParsing="false" onAction="#mostrarVentanaCarreraTecnicaAddUpdate" prefHeight="17.0" prefWidth="67.0" text="NUEVO" />
+      <Button layoutX="86.0" layoutY="336.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="87.0" text="MODIFICAR" />
+      <Button layoutX="187.0" layoutY="336.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="87.0" text="ELIMINAR" />
    </children>
 </AnchorPane>

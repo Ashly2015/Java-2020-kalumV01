@@ -28,5 +28,6 @@
       </TableView>
       <Button layoutX="7.0" layoutY="336.0" mnemonicParsing="false" onAction="#mostrarVentanaInstructorAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
       <Button layoutX="130.0" layoutY="336.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
+      <Button layoutX="248.0" layoutY="336.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="104.0" text="ELIMINAR" />
    </children>
 </AnchorPane>
