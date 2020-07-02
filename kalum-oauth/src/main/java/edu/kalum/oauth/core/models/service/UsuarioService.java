@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service("UsuarioService")
 public class UsuarioService implements UserDetailsService {
     private Logger logger= LoggerFactory.getLogger(UsuarioService.class);
     @Autowired
@@ -37,6 +37,24 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public Usuario save(Usuario usuario){
+        logger.info("Iniciando metodo de guardar  usuario");
         return usuarioDao.save(usuario);
+    }
+
+
+    public List<Usuario> findAll() {
+        logger.info("Iniciando metodo de consultas de usuarios");
+        return usuarioDao.findAll();
+    }
+
+    public Usuario findById(Long id) {
+        logger.info("Iniciando metodo de consultas de usuario por id");
+        return usuarioDao.findById(id).orElse(null);
+    }
+
+    public void delete(Long id) {
+        logger.info("Iniciando metodo de eliminacion de usuario por id");
+        usuarioDao.deleteById(id);
+
     }
 }

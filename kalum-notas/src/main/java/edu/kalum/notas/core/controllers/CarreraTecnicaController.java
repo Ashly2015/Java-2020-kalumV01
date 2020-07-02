@@ -32,6 +32,7 @@ public class CarreraTecnicaController {
     @Autowired
     private IModuloService moduloService;
 
+
     @GetMapping("/carrerasTecnicas")
     public  ResponseEntity<?> listarCarrerasTecnicas(){
         logger.info("Iniciando proceso de consultas de carreras tecnincas");
