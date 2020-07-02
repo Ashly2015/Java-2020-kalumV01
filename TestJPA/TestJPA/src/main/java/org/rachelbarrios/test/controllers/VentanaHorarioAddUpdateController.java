@@ -28,13 +28,8 @@ public class VentanaHorarioAddUpdateController implements Initializable {
     private TextField txtHorarioFinal;
 
     DateFormat formato = new SimpleDateFormat("HH:mm:ss");
-    
     Date fecha;
     String nuevoFormato;
-    
-   
-
-    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,8 +77,6 @@ public class VentanaHorarioAddUpdateController implements Initializable {
                 this.directorEscenas.mostrarVentanaHorarios();
 
             } else {
-                
-               
 
                 horario = new Horario();
                 horario.setHorarioId(UUID.randomUUID().toString());
