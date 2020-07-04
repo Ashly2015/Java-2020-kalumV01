@@ -8,15 +8,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rachelbarrios.test.controllers.VentanaClaseAddUpdateController">
    <children>
-      <Label layoutX="20.0" layoutY="20.0" text="TITULO">
+      <Label id="titulo-text" layoutX="20.0" layoutY="20.0" text="CLASE">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Line endX="516.5" layoutX="81.0" layoutY="55.0" startX="-81.0" strokeWidth="3.0" />
+      <Line endX="516.5" layoutX="81.0" layoutY="55.0" startX="-81.0" stroke="WHITE" strokeWidth="3.0" />
       <Button layoutX="387.0" layoutY="453.0" mnemonicParsing="false" onAction="#guardar" prefHeight="25.0" prefWidth="88.0" text="GUARDAR" />
       <Button layoutX="498.0" layoutY="453.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="88.0" text="CANCELAR" />
       <TextField fx:id="txtDescripcion" layoutX="174.0" layoutY="65.0" prefHeight="25.0" prefWidth="413.0" />

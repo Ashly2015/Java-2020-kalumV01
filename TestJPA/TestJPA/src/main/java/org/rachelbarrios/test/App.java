@@ -59,7 +59,7 @@ public class App extends Application {
 
   public void mostrarVentanaClase() {
     try {
-      VentanaClaseController ventanaClaseView = (VentanaClaseController) cambiarEscena("ClaseView.fxml", 779, 375);
+      VentanaClaseController ventanaClaseView = (VentanaClaseController) cambiarEscena("ClaseView.fxml", 820, 413);
       ventanaClaseView.setDirectorEscenas(this);
     } catch (Exception e) {
       e.printStackTrace();
@@ -68,7 +68,7 @@ public class App extends Application {
 
   public void mostrarVentanaSalon() {
     try {
-      VentanaSalonController ventanaSalonView = (VentanaSalonController) cambiarEscena("SalonView.fxml", 640, 375);
+      VentanaSalonController ventanaSalonView = (VentanaSalonController) cambiarEscena("SalonView.fxml", 695, 449);
       ventanaSalonView.setDirectorEscenas(this);
       
     } catch (Exception e) {
@@ -79,7 +79,7 @@ public class App extends Application {
   public void mostrarVentanaCarreraTecnica() {
     try {
       VentanaCarreraTecnicaController ventanaCarreraTecnicaView = (VentanaCarreraTecnicaController) cambiarEscena(
-          "CarreraTecnicaView.fxml", 462, 375);
+          "CarreraTecnicaView.fxml", 580, 439);
       ventanaCarreraTecnicaView.setDirectorEscenas(this);
     } catch (Exception e) {
       e.printStackTrace();
@@ -88,8 +88,9 @@ public class App extends Application {
 
   public void mostrarVentanaHorarios() {
     try {
-      VentanaHorarioController ventanaHorarioView = (VentanaHorarioController) cambiarEscena("HorarioView.fxml", 456,
-          375);
+      VentanaHorarioController ventanaHorarioView = (VentanaHorarioController) 
+      cambiarEscena("HorarioView.fxml", 545,
+      434);
       ventanaHorarioView.setDirectorEscenas(this);
     } catch (Exception e) {
       e.printStackTrace();
@@ -99,7 +100,7 @@ public class App extends Application {
   public void mostrarVentanaInstructor() {
     try {
       VentanaInstructorController ventanaInstructorView = (VentanaInstructorController) cambiarEscena(
-          "InstructorView.fxml", 723, 375);
+          "InstructorView.fxml", 769, 448);
       ventanaInstructorView.setDirectorEscenas(this);
     } catch (Exception e) {
       e.printStackTrace();

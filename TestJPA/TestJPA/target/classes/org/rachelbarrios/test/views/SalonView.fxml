@@ -8,23 +8,23 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rachelbarrios.test.controllers.VentanaSalonController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rachelbarrios.test.controllers.VentanaSalonController">
    <children>
-      <Label layoutX="27.0" layoutY="14.0" text="SALONES">
+      <Label id="titulo-text" layoutX="27.0" layoutY="14.0" text="SALONES">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Line endX="537.0" layoutX="103.0" layoutY="41.0" startX="-100.0" strokeWidth="3.0" />
-      <TableView fx:id="tblSalones" layoutX="14.0" layoutY="50.0" prefHeight="272.0" prefWidth="617.0">
+      <Line endX="592.0" layoutX="103.0" layoutY="41.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+      <TableView fx:id="tblSalones" layoutX="48.0" layoutY="89.0" prefHeight="272.0" prefWidth="617.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="113.0" text="NOMBRE SALON" />
           <TableColumn fx:id="colDescripcion" minWidth="0.0" prefWidth="407.0" text="DESCRIPCION" />
             <TableColumn fx:id="colCapacidad" prefWidth="104.0" text="CAPACIDAD" />
         </columns>
       </TableView>
-      <Button layoutX="504.0" layoutY="328.0" mnemonicParsing="false" onAction="#mostrarVentanaPrincipal" prefHeight="25.0" prefWidth="127.0" text="SALIR" />
-      <Button layoutX="13.0" layoutY="328.0" mnemonicParsing="false" onAction="#mostrarVentanaSalonAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
-      <Button layoutX="136.0" layoutY="328.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
-      <Button layoutX="260.0" layoutY="328.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="104.0" text="ELIMINAR" />
+      <Button id="salir" layoutX="538.0" layoutY="400.0" mnemonicParsing="false" onAction="#mostrarVentanaPrincipal" prefHeight="25.0" prefWidth="127.0" text="SALIR" />
+      <Button layoutX="14.0" layoutY="400.0" mnemonicParsing="false" onAction="#mostrarVentanaSalonAddUpdate" prefHeight="25.0" prefWidth="104.0" text="NUEVO" />
+      <Button layoutX="137.0" layoutY="400.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="104.0" text="MODIFICAR" />
+      <Button layoutX="261.0" layoutY="400.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="104.0" text="ELIMINAR" />
    </children>
 </AnchorPane>
