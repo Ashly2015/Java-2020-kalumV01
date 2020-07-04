@@ -2,6 +2,7 @@ package edu.kalum.oauth.core.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +29,8 @@ import java.util.Map;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
+    @Value("${edu.kalum.notas.secret}")
+    private String secret;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
@@ -63,8 +65,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter jwtAccessTokenConverter=new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("8db21ae2d039901d6a2cb92dbaab6286562345e4");
-        jwtAccessTokenConverter.setVerifierKey("8db21ae2d039901d6a2cb92dbaab6286562345e4");
+        jwtAccessTokenConverter.setSigningKey(secret);
+        jwtAccessTokenConverter.setVerifierKey(secret);
         return jwtAccessTokenConverter;
     }
 
@@ -75,10 +77,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 }
 
 class CustomTokenEnhancer implements TokenEnhancer{
+    @Value("${edu.kalum.oauth.customerId}")
+    private String customerId;
+    @Value("${edu.kalum.oauth.customerValue}")
+    private String customerValue;
     @Override
     public OAuth2AccessToken enhance (OAuth2AccessToken accessToken, OAuth2Authentication authentication){
         Map<String,Object> info =new HashMap<>();
-        info.put("ejemplo","nunca");
+        info.put(customerId,customerValue);
         ((DefaultOAuth2AccessToken)accessToken).setAdditionalInformation(info);
         return  accessToken;
 

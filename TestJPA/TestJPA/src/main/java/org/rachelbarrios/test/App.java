@@ -221,6 +221,7 @@ public class App extends Application {
     cargadorFxml.setBuilderFactory(new JavaFXBuilderFactory());
     cargadorFxml.setLocation(App.class.getResource(PAQUETE_VISTAS + escena));
     Scene miEscena = new Scene((AnchorPane) cargadorFxml.load(archivoFXML), ancho, alto);
+    miEscena.getStylesheets().add("/org/rachelbarrios/recursos/estilo.css");
     this.escenarioPrincipal.setScene(miEscena);
     this.escenarioPrincipal.sizeToScene();
     resultado = (Initializable) cargadorFxml.getController();

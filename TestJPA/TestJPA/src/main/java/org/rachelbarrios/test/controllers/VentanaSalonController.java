@@ -72,36 +72,49 @@ public class VentanaSalonController implements Initializable {
     }
 
     public void eliminar() {
-        if (this.tblSalones.getSelectionModel().getSelectedItem() == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Salón");
-            alert.setHeaderText(null);
-            alert.setContentText("Debe seleccionar un elemento");
-            alert.initOwner(null);
-            alert.show();
-        } else {
-            Salon salon = this.tblSalones.getSelectionModel().getSelectedItem();
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Salón");
-            alert.setHeaderText(null);
-            alert.setContentText("¿Desea eliminar el registro?");
-            alert.initOwner(null);
+        try {
 
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.get() == ButtonType.OK) {
-                Conexion.getInstancia().eliminar(salon);
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert1.setTitle("Salón");
-                alert1.setHeaderText(null);
-                alert1.setContentText("Registro eliminado correctamente");
-                alert1.initOwner(null);
-                alert1.show();
-                this.directorEscenas.mostrarVentanaSalon();
+            if (this.tblSalones.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Salón");
+                alert.setHeaderText(null);
+                alert.setContentText("Debe seleccionar un elemento");
+                alert.initOwner(null);
+                alert.show();
             } else {
-                this.directorEscenas.mostrarVentanaSalon();
+                Salon salon = this.tblSalones.getSelectionModel().getSelectedItem();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Salón");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Desea eliminar el registro?");
+                alert.initOwner(null);
+    
+                Optional<ButtonType> result = alert.showAndWait();
+    
+                if (result.get() == ButtonType.OK) {
+                    Conexion.getInstancia().eliminar(salon);
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Salón");
+                    alert1.setHeaderText(null);
+                    alert1.setContentText("Registro eliminado correctamente");
+                    alert1.initOwner(null);
+                    alert1.show();
+                    this.directorEscenas.mostrarVentanaSalon();
+                } else {
+                    this.directorEscenas.mostrarVentanaSalon();
+                }
             }
+            
+        } catch (Exception e) {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Salón");
+            alert1.setHeaderText(null);
+            alert1.setContentText("El salon esta asignado a una clase y se necesita que se elimine esa asignacion antes de eliminar el salon");
+            alert1.initOwner(null);
+            alert1.show();
+            this.directorEscenas.mostrarVentanaSalon();
         }
+       
     }
 
 }

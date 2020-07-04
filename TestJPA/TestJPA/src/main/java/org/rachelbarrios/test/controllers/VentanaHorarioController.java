@@ -79,6 +79,7 @@ public class VentanaHorarioController implements Initializable {
     }
 
     public void eliminar() {
+        try{
         if (this.tblHorarios.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Horario");
@@ -109,6 +110,15 @@ public class VentanaHorarioController implements Initializable {
                 this.directorEscenas.mostrarVentanaHorarios();
             }
         }
+    }catch (Exception e) {
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Horario");
+        alert1.setHeaderText(null);
+        alert1.setContentText("El horario esta asignado a una clase y se necesita que se elimine esa asignacion antes de eliminar el horario");
+        alert1.initOwner(null);
+        alert1.show();
+        this.directorEscenas.mostrarVentanaHorarios();
+    }
     }
 
  

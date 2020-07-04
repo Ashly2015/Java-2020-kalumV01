@@ -84,6 +84,7 @@ this.colEstatus.setCellValueFactory(cellEstatus -> cellEstatus.getValue().estatu
     }
 
     public void eliminar() {
+        try{
         if (this.tblInstructores.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Instructor");
@@ -114,5 +115,14 @@ this.colEstatus.setCellValueFactory(cellEstatus -> cellEstatus.getValue().estatu
                 this.directorEscenas.mostrarVentanaInstructor();
             }
         }
+    }catch (Exception e) {
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Instructor");
+        alert1.setHeaderText(null);
+        alert1.setContentText("El instructor esta asignado a una clase y se necesita que se elimine esa asignacion antes de eliminar el instructor");
+        alert1.initOwner(null);
+        alert1.show();
+        this.directorEscenas.mostrarVentanaInstructor();
+    }
     }
 }

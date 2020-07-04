@@ -34,11 +34,7 @@ public class VentanaPrincipalController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        anchorPane.styleProperty().set("-fx-background-color: #000000;");
-        menuBar.styleProperty().set("-fx-background-color: #00BFFF; -fx-border-color: #F0FFFF ;");
-        menuC.styleProperty().set(" -fx-border-color: #F0FFFF ;");
-        menuH.styleProperty().set("-fx-border-color: #F0FFFF ;");
-        menuR.styleProperty().set(" -fx-border-color: #F0FFFF ;");
+       
         
         
     }

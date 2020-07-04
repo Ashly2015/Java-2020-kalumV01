@@ -64,6 +64,7 @@ this.colNombre.setCellValueFactory(cellNombre -> cellNombre.getValue().nombreCar
     }
 
     public void eliminar() {
+        try{
         if (this.tblCarrerasTecnicas.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Carrera Tecnica");
@@ -94,6 +95,15 @@ this.colNombre.setCellValueFactory(cellNombre -> cellNombre.getValue().nombreCar
                 this.directorEscenas.mostrarVentanaCarreraTecnica();
             }
         }
+    }catch (Exception e) {
+        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+        alert1.setTitle("Carrera tecnica");
+        alert1.setHeaderText(null);
+        alert1.setContentText("La carrera tecnica esta asignado a una clase y se necesita que se elimine esa asignacion antes de eliminar la carrera tecnica");
+        alert1.initOwner(null);
+        alert1.show();
+        this.directorEscenas.mostrarVentanaCarreraTecnica();
+    }
     }
 
 }

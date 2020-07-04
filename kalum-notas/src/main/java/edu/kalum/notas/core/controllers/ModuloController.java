@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class ModuloController {
     private IModuloService moduloService;
     @Autowired
     private ISeminarioService seminarioService;
-
+    @Secured({"ROLE_USER"})
     @GetMapping("/modulos")
     public ResponseEntity<?> listarModulos(){
         logger.info("Iniciando proceso de consultas de modulos");
