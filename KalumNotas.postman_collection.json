@@ -1,0 +1,1314 @@
+{
+	"info": {
+		"_postman_id": "e1256925-232d-45a2-bd35-7404dfc8ee13",
+		"name": "KalumNotas",
+		"description": "Ambiente de desarrollo para la api de kalum notas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DEV",
+			"item": [
+				{
+					"name": "Carrera Tecnicas",
+					"item": [
+						{
+							"name": "01-Listado de carreras tecnicas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/carrerasTecnicas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"carrerasTecnicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-Buscar carrera tecnica por id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/carrerasTecnicas/9cb4c965-713e-11ea-84be-107d1a251b20?",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"carrerasTecnicas",
+										"9cb4c965-713e-11ea-84be-107d1a251b20"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-Agregar nueva carrera tecnica",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombreCarrera\": \"Construccion y diseño\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/carrerasTecnicas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"carrerasTecnicas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04-Eliminar una carrera tecnica",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/carrerasTecnicas/7687858c-3a56-47d4-b820-4f44a0b88efb",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"carrerasTecnicas",
+										"7687858c-3a56-47d4-b820-4f44a0b88efb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05-Modificar carrera tecnica",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"carreraId\": \"1974c8f4-4d91-4f4d-af2f-e24b94291256\",\r\n        \"nombreCarrera\": \"Especialista en redes\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/carrerasTecnicas/1974c8f4-4d91-4f4d-af2f-e24b94291256?",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"carrerasTecnicas",
+										"1974c8f4-4d91-4f4d-af2f-e24b94291256"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "06-Listar Modulos por codigo de carrera tecnica",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/carrerasTecnicas/9cb4c965-713e-11ea-84be-107d1a251b20/modulos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"carrerasTecnicas",
+										"9cb4c965-713e-11ea-84be-107d1a251b20",
+										"modulos"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Modulos",
+					"item": [
+						{
+							"name": "01-Listar modulos",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/modulos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"modulos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-Buscar modulos por id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/modulos/53ef345d-b43d-11ea-a95d-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"modulos",
+										"53ef345d-b43d-11ea-a95d-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-Agregar nuevo modulo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \r\n        \"nombreModulo\": \"Desarrolladort\",\r\n        \"numeroSeminarios\": 2,\r\n       \"carreraTecnica\": {\r\n            \"carreraId\": \"9cdbdb2a-713e-11ea-84be-107d1a251b20\"\r\n    \t}\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/modulos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"modulos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04-Eliminar un modulo",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/modulos/a7508347-0e3d-49d9-8927-5a471329330b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"modulos",
+										"a7508347-0e3d-49d9-8927-5a471329330b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05-Modificar modulos",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \"nombreModulo\": \"Desarrollo en backend 2020\",\r\n        \"numeroSeminarios\": 2,\r\n        \"carreraTecnica\": {\r\n            \"carreraId\": \"1974c8f4-4d91-4f4d-af2f-e24b94291256\"\r\n        }\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/modulos/53ef345d-b43d-11ea-a95d-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"modulos",
+										"53ef345d-b43d-11ea-a95d-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "06-Listar Seminarios por codigo de modulo",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/modulos/c1462166-a844-11ea-96e3-107d1a251b20/seminarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"modulos",
+										"c1462166-a844-11ea-96e3-107d1a251b20",
+										"seminarios"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Seminarios",
+					"item": [
+						{
+							"name": "01-Listar seminarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/seminarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"seminarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-Buscar seminarios por id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/seminarios/a0ee8d65-b43e-11ea-a95d-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"seminarios",
+										"a0ee8d65-b43e-11ea-a95d-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-Agregar nuevo seminario",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombreSeminario\": \"seminario 2\",\r\n        \"fechaInicio\": \"2020-03-06\",\r\n        \"fechaFin\": \"2020-07-06\",\r\n        \"modulo\": {\r\n            \"moduloId\": \"c1462166-a844-11ea-96e3-107d1a251b20\"\r\n    }\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/seminarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"seminarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04-Eliminar un seminario",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/seminarios/8b205bc7-ffb2-46eb-b982-f0c13b6e1585",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"seminarios",
+										"8b205bc7-ffb2-46eb-b982-f0c13b6e1585"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05-Modificar seminarios",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombreSeminario\": \"seminario 2.2\",\r\n        \"fechaInicio\": \"2020-03-06\",\r\n        \"fechaFin\": \"2020-07-06\",\r\n        \"modulo\": {\r\n            \"moduloId\": \"c1462166-a844-11ea-96e3-107d1a251b20\"\r\n    }\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/seminarios/8b205bc7-ffb2-46eb-b982-f0c13b6e1585",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"seminarios",
+										"8b205bc7-ffb2-46eb-b982-f0c13b6e1585"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "06-Listar Detalle Actividad por codigo de Seminario",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/seminarios/a0ee8d65-b43e-11ea-a95d-107d1a251b20/detalle-actividades",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"seminarios",
+										"a0ee8d65-b43e-11ea-a95d-107d1a251b20",
+										"detalle-actividades"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Detalle Actividad",
+					"item": [
+						{
+							"name": "01-Listar detalle actividad",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-actividades",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-actividades"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-Buscar detalle actividad por id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-actividades/909dc32e-b43f-11ea-a95d-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-actividades",
+										"909dc32e-b43f-11ea-a95d-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-Agregar nuevo detalle actividad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombreActividad\": \"TAREA 1\",\r\n        \"notaActividad\": 87,\r\n        \"fechaCreacion\": \"2020-03-16\",\r\n        \"fechaEntrega\": \"2020-03-20\",\r\n        \"fechaPostergacion\": \"2020-03-29\",\r\n        \"estado\": \"A\",\r\n        \"seminario\": {\r\n            \"seminarioId\": \"bc21e403-b43e-11ea-a95d-107d1a251b20\"\r\n        }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-actividades",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-actividades"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04-Eliminar un detalle actividad",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-actividades/3f1535a8-a559-403d-9c8f-116b820d223e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-actividades",
+										"3f1535a8-a559-403d-9c8f-116b820d223e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05-Modificar detalle actividad",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombreActividad\": \"Corto 1\",\r\n        \"notaActividad\": 87,\r\n        \"fechaCreacion\": \"2020-03-16\",\r\n        \"fechaEntrega\": \"2020-03-20\",\r\n        \"fechaPostergacion\": \"2020-03-29\",\r\n        \"estado\": \"A\",\r\n        \"seminario\": {\r\n            \"seminarioId\": \"bc21e403-b43e-11ea-a95d-107d1a251b20\"\r\n        }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-actividades/3f1535a8-a559-403d-9c8f-116b820d223e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-actividades",
+										"3f1535a8-a559-403d-9c8f-116b820d223e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "06-Listar detalle nota por codigo de detalle actividad",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-actividades/909dc32e-b43f-11ea-a95d-107d1a251b20/detalle-notas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-actividades",
+										"909dc32e-b43f-11ea-a95d-107d1a251b20",
+										"detalle-notas"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Detalle Nota",
+					"item": [
+						{
+							"name": "01-Listar detalle nota",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-notas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-notas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-Buscar detalle nota por id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-notas/45238988-b441-11ea-a95d-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-notas",
+										"45238988-b441-11ea-a95d-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-Agregar nuevo detalle nota",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"valorNota\": 100,\r\n        \"detalleActividad\": {\r\n            \"detalleActividadId\": \"6dd39ba3-b43f-11ea-a95d-107d1a251b20\"\r\n        },\r\n        \"alumno\": {\r\n            \"id\": \"9116c1dd-6bbc-11ea-8f27-107d1a251b20\"\r\n}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-notas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-notas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04-Eliminar un detalle nota",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-notas/2ea7e457-c1dd-4eae-97c7-01cf56dfcbac",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-notas",
+										"2ea7e457-c1dd-4eae-97c7-01cf56dfcbac"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05-Modificar detalle nota",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"valorNota\": 100,\r\n        \"detalleActividad\": {\r\n            \"detalleActividadId\": \"6dd39ba3-b43f-11ea-a95d-107d1a251b20\"\r\n        },\r\n        \"alumno\": {\r\n            \"id\": \"9116c1dd-6bbc-11ea-8f27-107d1a251b20\"\r\n}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/detalle-notas/45238988-b441-11ea-a95d-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"detalle-notas",
+										"45238988-b441-11ea-a95d-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Alumno",
+					"item": [
+						{
+							"name": "01-Listar alumno",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/alumnos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"alumnos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-Buscar alumno por id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/alumnos/9116c1dd-6bbc-11ea-8f27-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"alumnos",
+										"9116c1dd-6bbc-11ea-8f27-107d1a251b20"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-Agregar nuevo alumno",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"carne\": 2020170,\r\n    \"nombres\": \"Javier\",\r\n    \"apellidos\": \"Torres\",\r\n    \"fechaNacimiento\": \"2000-07-25\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/alumnos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"alumnos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04-Eliminar un alumno",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/alumnos/ee376796-6bac-11ea-8f27-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"alumnos",
+										"ee376796-6bac-11ea-8f27-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05-Modificar alumno",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"carne\": 2020170,\r\n    \"nombres\": \"Byron Javier\",\r\n    \"apellidos\": \"Torres\",\r\n    \"fechaNacimiento\": \"2000-07-25\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/alumnos/8b8ee5c0-beb6-4cf1-8bd7-6bbb689070d4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"alumnos",
+										"8b8ee5c0-beb6-4cf1-8bd7-6bbb689070d4"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Asignacion Alumno",
+					"item": [
+						{
+							"name": "01-Listar asignacion alumno",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/asignaciones-alumnos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"asignaciones-alumnos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-Buscar asignacion alumno por id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/asignaciones-alumnos/e14c0ec2-76bf-11ea-b7b5-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"asignaciones-alumnos",
+										"e14c0ec2-76bf-11ea-b7b5-107d1a251b20"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-Agregar nueva asignacion alumno",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"fechaAsignacion\": \"2020-01-02\",\r\n        \"observaciones\": \"Ninguna\",\r\n        \"alumno\": {\r\n            \"id\": \"ee376796-6bac-11ea-8f27-107d1a251b20\"\r\n        },\r\n        \"clase\": {\r\n            \"claseId\": \"64d021f2-76b9-11ea-b7b5-107d1a251b20\"\r\n        }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/asignaciones-alumnos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"asignaciones-alumnos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "04-Eliminar una asignacion alumno",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/asignaciones-alumnos/61debd83-ec5e-4f99-a0c9-36a61816188f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"asignaciones-alumnos",
+										"61debd83-ec5e-4f99-a0c9-36a61816188f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "05-Modificar asignacion alumno",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"fechaAsignacion\": \"2020-01-02\",\r\n        \"observaciones\": \"Falta mejorar\",\r\n        \"alumno\": {\r\n            \"id\": \"ee376796-6bac-11ea-8f27-107d1a251b20\"\r\n        },\r\n        \"clase\": {\r\n            \"claseId\": \"64d021f2-76b9-11ea-b7b5-107d1a251b20\"\r\n        }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9200/kalum-notas/v1/asignaciones-alumnos/e14c0ec2-76bf-11ea-b7b5-107d1a251b20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9200",
+									"path": [
+										"kalum-notas",
+										"v1",
+										"asignaciones-alumnos",
+										"e14c0ec2-76bf-11ea-b7b5-107d1a251b20"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -23,7 +23,7 @@ public class JwtUtil {
     public UserDetails extractUserDetails(String token){
         UserDetails userDetails=null;
         Claims claims =extractAllClaims(token);
-        if (claims.isEmpty()){
+        if (!claims.isEmpty()){
             String username=claims.get("user_name").toString();
             String roles[]=claims.get("authorities").toString().
                     replace("[","").
@@ -36,7 +36,7 @@ public class JwtUtil {
 
     }
     public boolean validateToken(String token){
-        return (isTokenExpired(token));
+        return (!isTokenExpired(token));
     }
     private boolean isTokenExpired(String token){
         return extractExpiration(token).before(new Date());
@@ -50,6 +50,6 @@ public class JwtUtil {
 
     }
     private Claims extractAllClaims(String token){
-        return Jwts.parser().setSigningKey(SECRET_KEY.getBytes()).parseClaimsJwt(token).getBody();
+        return Jwts.parser().setSigningKey(SECRET_KEY.getBytes()).parseClaimsJws(token).getBody();
     }
 }

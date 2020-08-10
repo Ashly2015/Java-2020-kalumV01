@@ -70,7 +70,7 @@ public class App extends Application {
     try {
       VentanaSalonController ventanaSalonView = (VentanaSalonController) cambiarEscena("SalonView.fxml", 695, 449);
       ventanaSalonView.setDirectorEscenas(this);
-      
+
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -88,9 +88,8 @@ public class App extends Application {
 
   public void mostrarVentanaHorarios() {
     try {
-      VentanaHorarioController ventanaHorarioView = (VentanaHorarioController) 
-      cambiarEscena("HorarioView.fxml", 545,
-      434);
+      VentanaHorarioController ventanaHorarioView = (VentanaHorarioController) cambiarEscena("HorarioView.fxml", 545,
+          434);
       ventanaHorarioView.setDirectorEscenas(this);
     } catch (Exception e) {
       e.printStackTrace();
@@ -111,7 +110,7 @@ public class App extends Application {
     try {
       VentanaSalonAddUpdateController ventanaSalonAddUpdate = (VentanaSalonAddUpdateController) cambiarEscena(
           "VentanaSalonAddUpdateView.fxml", 600, 255);
-          ventanaSalonAddUpdate.setDirectorEscenas(this);
+      ventanaSalonAddUpdate.setDirectorEscenas(this);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -121,95 +120,95 @@ public class App extends Application {
     try {
       VentanaSalonAddUpdateController ventanaSalonAddUpdate = (VentanaSalonAddUpdateController) cambiarEscena(
           "VentanaSalonAddUpdateView.fxml", 600, 255);
-          ventanaSalonAddUpdate.setDirectorEscenas(this);
-          ventanaSalonAddUpdate.setSalon(salon);
+      ventanaSalonAddUpdate.setDirectorEscenas(this);
+      ventanaSalonAddUpdate.setSalon(salon);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-  public void mostrarVentanaCarreraTecnicaAddUpdate(){
+
+  public void mostrarVentanaCarreraTecnicaAddUpdate() {
     try {
       VentanaCarreraTecnicaAddUpdateController ventanaCarreraTecnicaAddUpdate = (VentanaCarreraTecnicaAddUpdateController) cambiarEscena(
           "VentanaCarreraTecnicaAddUpdateView.fxml", 600, 185);
-          ventanaCarreraTecnicaAddUpdate.setDirectorEscenas(this);
+      ventanaCarreraTecnicaAddUpdate.setDirectorEscenas(this);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void mostrarVentanaCarreraTecnicaAddUpdate(CarreraTecnica carreraTecnica){
+  public void mostrarVentanaCarreraTecnicaAddUpdate(CarreraTecnica carreraTecnica) {
     try {
       VentanaCarreraTecnicaAddUpdateController ventanaCarreraTecnicaAddUpdate = (VentanaCarreraTecnicaAddUpdateController) cambiarEscena(
           "VentanaCarreraTecnicaAddUpdateView.fxml", 600, 185);
-          ventanaCarreraTecnicaAddUpdate.setDirectorEscenas(this);
-          ventanaCarreraTecnicaAddUpdate.setCarreraTecnica(carreraTecnica);
+      ventanaCarreraTecnicaAddUpdate.setDirectorEscenas(this);
+      ventanaCarreraTecnicaAddUpdate.setCarreraTecnica(carreraTecnica);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-
-  public void mostrarVentanaHorarioAddUpdate(){
+  public void mostrarVentanaHorarioAddUpdate() {
     try {
       VentanaHorarioAddUpdateController ventanaHorarioAddUpdate = (VentanaHorarioAddUpdateController) cambiarEscena(
           "VentanaHorarioAddUpdateView.fxml", 600, 223);
-          ventanaHorarioAddUpdate.setDirectorEscenas(this);
-          
+      ventanaHorarioAddUpdate.setDirectorEscenas(this);
+
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void mostrarVentanaHorarioAddUpdate(Horario horario){
+  public void mostrarVentanaHorarioAddUpdate(Horario horario) {
     try {
       VentanaHorarioAddUpdateController ventanaHorarioAddUpdate = (VentanaHorarioAddUpdateController) cambiarEscena(
           "VentanaHorarioAddUpdateView.fxml", 600, 223);
-          ventanaHorarioAddUpdate.setDirectorEscenas(this);
-          ventanaHorarioAddUpdate.setHorario(horario);
+      ventanaHorarioAddUpdate.setDirectorEscenas(this);
+      ventanaHorarioAddUpdate.setHorario(horario);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void mostrarVentanaInstructorAddUpdate(Instructor instructor){
+  public void mostrarVentanaInstructorAddUpdate(Instructor instructor) {
     try {
       VentanaInstructorAddUpdateController ventanaInstructorAddUpdate = (VentanaInstructorAddUpdateController) cambiarEscena(
           "VentanaInstructorAddUpdateView.fxml", 600, 387);
-          ventanaInstructorAddUpdate.setDirectorEscenas(this);
-          ventanaInstructorAddUpdate.setInstructor(instructor);
+      ventanaInstructorAddUpdate.setDirectorEscenas(this);
+      ventanaInstructorAddUpdate.setInstructor(instructor);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void mostrarVentanaInstructorAddUpdate(){
+  public void mostrarVentanaInstructorAddUpdate() {
     try {
       VentanaInstructorAddUpdateController ventanaInstructorAddUpdate = (VentanaInstructorAddUpdateController) cambiarEscena(
           "VentanaInstructorAddUpdateView.fxml", 600, 387);
-          ventanaInstructorAddUpdate.setDirectorEscenas(this);
-          
+      ventanaInstructorAddUpdate.setDirectorEscenas(this);
+
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void mostrarVentanaClaseAddUpdate(Clase clase){
+  public void mostrarVentanaClaseAddUpdate(Clase clase) {
     try {
       VentanaClaseAddUpdateController ventanaClaseAddUpdate = (VentanaClaseAddUpdateController) cambiarEscena(
           "VentanaClaseAddUpdateView.fxml", 598, 492);
-          ventanaClaseAddUpdate.setDirectorEscenas(this);
-          ventanaClaseAddUpdate.setClase(clase);
+      ventanaClaseAddUpdate.setDirectorEscenas(this);
+      ventanaClaseAddUpdate.setClase(clase);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void mostrarVentanaClaseAddUpdate(){
+  public void mostrarVentanaClaseAddUpdate() {
     try {
       VentanaClaseAddUpdateController ventanaClaseAddUpdate = (VentanaClaseAddUpdateController) cambiarEscena(
           "VentanaClaseAddUpdateView.fxml", 598, 492);
-          ventanaClaseAddUpdate.setDirectorEscenas(this);
-          
+      ventanaClaseAddUpdate.setDirectorEscenas(this);
+
     } catch (Exception e) {
       e.printStackTrace();
     }
